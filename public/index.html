@@ -2,7 +2,7 @@
 <html dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>سالم تك</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
@@ -13,41 +13,27 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #075e54 0%, #128c7e 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #075e54;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
         }
         
+        /* شاشة التسجيل */
         #registerScreen {
             background: white;
             padding: 30px 20px;
-            border-radius: 25px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            border-radius: 20px;
             width: 90%;
-            max-width: 380px;
+            max-width: 350px;
             text-align: center;
         }
         
-        .logo {
-            font-size: 50px;
-            color: #075e54;
-            margin-bottom: 15px;
-        }
-        
-        #registerScreen h2 {
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 26px;
-        }
-        
-        .subtitle {
-            color: #666;
-            margin-bottom: 25px;
-            font-size: 14px;
-        }
+        .logo { font-size: 45px; color: #075e54; margin-bottom: 15px; }
+        #registerScreen h2 { color: #333; margin-bottom: 5px; font-size: 24px; }
+        .subtitle { color: #666; margin-bottom: 25px; font-size: 13px; }
         
         .input-group {
             margin-bottom: 20px;
@@ -56,191 +42,119 @@
         
         .input-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             color: #555;
-            font-weight: 500;
-            font-size: 14px;
+            font-size: 13px;
         }
         
         .input-group label i {
-            margin-left: 8px;
+            margin-left: 6px;
             color: #075e54;
         }
         
         .input-group input {
             width: 100%;
             padding: 14px;
-            border: 2px solid #e0e0e0;
-            border-radius: 15px;
+            border: 1.5px solid #ddd;
+            border-radius: 12px;
             font-size: 16px;
-            transition: all 0.3s;
             text-align: right;
+            background: #f9f9f9;
         }
         
         .input-group input:focus {
             outline: none;
             border-color: #075e54;
+            background: white;
         }
         
         #registerBtn {
             width: 100%;
-            padding: 15px;
+            padding: 14px;
             background: #075e54;
             color: white;
             border: none;
-            border-radius: 15px;
-            font-size: 18px;
+            border-radius: 12px;
+            font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-            transition: transform 0.3s;
         }
         
-        #registerBtn:hover {
-            transform: scale(1.02);
-        }
-        
+        /* شاشة الشات */
         #chatScreen {
             display: none;
             width: 100%;
             height: 100vh;
             background: #e5ddd5;
-        }
-        
-        .chat-container {
-            display: flex;
-            height: 100vh;
-        }
-        
-        .sidebar {
-            width: 280px;
-            background: white;
-            border-left: 1px solid #ddd;
-            display: flex;
+            position: fixed;
+            top: 0;
+            left: 0;
             flex-direction: column;
         }
         
-        .sidebar-header {
-            padding: 18px;
-            background: #075e54;
-            color: white;
-            text-align: center;
-        }
-        
-        .sidebar-header h3 {
-            font-size: 16px;
-            margin-bottom: 5px;
-        }
-        
-        .online-count {
-            font-size: 13px;
-            opacity: 0.9;
-        }
-        
-        .users-list {
-            flex: 1;
-            overflow-y: auto;
-            padding: 10px;
-        }
-        
-        .user-item {
-            display: flex;
-            align-items: center;
-            padding: 12px;
-            margin-bottom: 8px;
-            background: #f8f9fa;
-            border-radius: 12px;
-        }
-        
-        .user-avatar {
-            width: 40px;
-            height: 40px;
-            background: #075e54;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            margin-left: 12px;
-        }
-        
-        .user-info {
-            flex: 1;
-        }
-        
-        .user-name {
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 3px;
-            font-size: 14px;
-        }
-        
-        .user-id {
-            font-size: 10px;
-            color: #999;
-        }
-        
-        .online-indicator {
-            width: 10px;
-            height: 10px;
-            background: #4caf50;
-            border-radius: 50%;
-        }
-        
-        .main-chat {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            background: #e5ddd5;
-        }
-        
+        /* الهيدر */
         .chat-header {
             background: #075e54;
             color: white;
-            padding: 15px;
+            padding: 12px 15px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
         
         .chat-header h1 {
             font-size: 20px;
-        }
-        
-        .my-info {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .users-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 5px;
         }
         
         .my-id {
             background: rgba(255,255,255,0.2);
-            padding: 6px 12px;
+            padding: 5px 10px;
             border-radius: 20px;
             font-size: 12px;
         }
         
         .logout-btn {
-            background: rgba(255,255,255,0.2);
-            color: white;
+            background: none;
             border: none;
-            padding: 6px 12px;
-            border-radius: 20px;
+            color: white;
+            font-size: 18px;
             cursor: pointer;
-            font-size: 13px;
+            padding: 5px;
         }
         
+        /* منطقة الرسائل */
         .messages-area {
             flex: 1;
             overflow-y: auto;
             padding: 15px;
             display: flex;
             flex-direction: column;
-            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4QYDFSkFGaVrUwAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAI0lEQVR42u3QMQEAAAjDMMC/50EYSqgTTUybNm3atGnTpk0DAADAjwAEAAHFAcAAAAAASUVORK5CYII=');
+            background: #e5ddd5;
         }
         
         .message-wrapper {
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             display: flex;
         }
         
@@ -249,14 +163,14 @@
         }
         
         .message-content {
-            max-width: 75%;
+            max-width: 80%;
         }
         
         .message-header {
             display: flex;
             align-items: center;
-            margin-bottom: 4px;
-            font-size: 12px;
+            margin-bottom: 3px;
+            font-size: 11px;
         }
         
         .my-message .message-header {
@@ -275,7 +189,7 @@
         }
         
         .message-bubble {
-            padding: 10px 14px;
+            padding: 10px 12px;
             border-radius: 8px;
             word-wrap: break-word;
             font-size: 14px;
@@ -303,10 +217,13 @@
             max-width: 200px;
         }
         
+        /* منطقة الإدخال */
         .input-area {
             background: #f0f0f0;
-            padding: 12px;
+            padding: 10px 12px;
             border-top: 1px solid #ddd;
+            position: sticky;
+            bottom: 0;
         }
         
         .input-container {
@@ -321,14 +238,17 @@
         }
         
         .action-btn {
-            width: 42px;
-            height: 42px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             border: none;
             background: white;
             color: #075e54;
             font-size: 18px;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .action-btn.recording {
@@ -344,7 +264,7 @@
         
         #messageInput {
             flex: 1;
-            padding: 12px;
+            padding: 11px 15px;
             border: none;
             border-radius: 25px;
             font-size: 15px;
@@ -356,23 +276,125 @@
         }
         
         .send-btn {
-            width: 42px;
-            height: 42px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             border: none;
             background: #075e54;
             color: white;
             font-size: 18px;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
-        .footer {
-            text-align: center;
-            padding: 8px;
-            background: #f0f0f0;
-            color: #666;
+        /* نافذة المتصلين */
+        .users-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .users-modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 350px;
+            max-height: 70vh;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        
+        .modal-header {
+            background: #075e54;
+            color: white;
+            padding: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-header h3 {
+            font-size: 18px;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        
+        .modal-body {
+            padding: 15px;
+            max-height: 50vh;
+            overflow-y: auto;
+        }
+        
+        .user-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            margin-bottom: 8px;
+            background: #f5f5f5;
+            border-radius: 12px;
+        }
+        
+        .user-avatar {
+            width: 45px;
+            height: 45px;
+            background: #075e54;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            margin-left: 12px;
+        }
+        
+        .user-info {
+            flex: 1;
+        }
+        
+        .user-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 3px;
+        }
+        
+        .user-id {
             font-size: 11px;
-            border-top: 1px solid #ddd;
+            color: #999;
+        }
+        
+        .online-indicator {
+            width: 10px;
+            height: 10px;
+            background: #4caf50;
+            border-radius: 50%;
+        }
+        
+        .online-count-badge {
+            background: white;
+            color: #075e54;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-right: 10px;
         }
         
         .system-message {
@@ -381,15 +403,24 @@
         }
         
         .system-message span {
-            background: rgba(225,245,254,0.8);
+            background: rgba(255,255,255,0.8);
             padding: 6px 12px;
             border-radius: 20px;
             font-size: 12px;
             color: #555;
         }
+        
+        .footer {
+            text-align: center;
+            padding: 6px;
+            background: #f0f0f0;
+            color: #888;
+            font-size: 10px;
+        }
     </style>
 </head>
 <body>
+    <!-- شاشة التسجيل -->
     <div id="registerScreen">
         <div class="logo">
             <i class="fas fa-comments"></i>
@@ -407,52 +438,58 @@
         </button>
     </div>
 
+    <!-- شاشة الشات -->
     <div id="chatScreen">
-        <div class="chat-container">
-            <div class="sidebar">
-                <div class="sidebar-header">
-                    <h3><i class="fas fa-users"></i> المتصلون</h3>
-                    <div class="online-count" id="onlineCount">0</div>
-                </div>
-                <div class="users-list" id="usersList"></div>
+        <div class="chat-header">
+            <h1><i class="fas fa-comment-dots"></i> سالم تك</h1>
+            <div class="header-actions">
+                <span class="my-id" id="myIdDisplay"><i class="fas fa-id-card"></i> <span id="userIdText"></span></span>
+                <button class="users-btn" onclick="openUsersModal()">
+                    <i class="fas fa-users"></i>
+                </button>
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
             </div>
-            
-            <div class="main-chat">
-                <div class="chat-header">
-                    <h1><i class="fas fa-comment-dots"></i> سالم تك</h1>
-                    <div class="my-info">
-                        <span class="my-id" id="myIdDisplay"><i class="fas fa-id-card"></i> <span id="userIdText"></span></span>
-                        <span id="myNameDisplay" style="font-weight: bold;"></span>
-                        <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> خروج</button>
-                    </div>
+        </div>
+        
+        <div class="messages-area" id="messagesArea"></div>
+        
+        <div class="input-area">
+            <div class="input-container">
+                <div class="input-actions">
+                    <button class="action-btn" onclick="triggerImageUpload()">
+                        <i class="fas fa-image"></i>
+                    </button>
+                    <button class="action-btn" id="voiceBtn" onclick="toggleVoiceRecording()">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                    <input type="file" id="imageInput" accept="image/*" style="display: none;" onchange="handleImageUpload(event)">
                 </div>
                 
-                <div class="messages-area" id="messagesArea"></div>
+                <input type="text" id="messageInput" placeholder="اكتب رسالة..." autocomplete="off">
                 
-                <div class="input-area">
-                    <div class="input-container">
-                        <div class="input-actions">
-                            <button class="action-btn" onclick="triggerImageUpload()">
-                                <i class="fas fa-image"></i>
-                            </button>
-                            <button class="action-btn" id="voiceBtn" onclick="toggleVoiceRecording()">
-                                <i class="fas fa-microphone"></i>
-                            </button>
-                            <input type="file" id="imageInput" accept="image/*" style="display: none;" onchange="handleImageUpload(event)">
-                        </div>
-                        
-                        <input type="text" id="messageInput" placeholder="اكتب رسالة..." autocomplete="off">
-                        
-                        <button class="send-btn" onclick="sendMessage()">
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="footer">
-                    <i class="fas fa-heart"></i> من تطوير سالم <i class="fas fa-heart"></i>
-                </div>
+                <button class="send-btn" onclick="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
             </div>
+        </div>
+        
+        <div class="footer">
+            <i class="fas fa-heart"></i> من تطوير سالم <i class="fas fa-heart"></i>
+        </div>
+    </div>
+
+    <!-- نافذة المتصلين -->
+    <div class="users-modal" id="usersModal" onclick="closeUsersModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3><i class="fas fa-users"></i> المتصلون <span id="modalOnlineCount" class="online-count-badge">0</span></h3>
+                <button class="close-modal" onclick="closeUsersModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modalUsersList"></div>
         </div>
     </div>
 
@@ -470,11 +507,11 @@
         const realNameInput = document.getElementById('realNameInput');
         const messagesArea = document.getElementById('messagesArea');
         const messageInput = document.getElementById('messageInput');
-        const usersList = document.getElementById('usersList');
-        const onlineCount = document.getElementById('onlineCount');
-        const myNameDisplay = document.getElementById('myNameDisplay');
         const userIdText = document.getElementById('userIdText');
         const voiceBtn = document.getElementById('voiceBtn');
+        const usersModal = document.getElementById('usersModal');
+        const modalUsersList = document.getElementById('modalUsersList');
+        const modalOnlineCount = document.getElementById('modalOnlineCount');
         
         function generateUserId(name) {
             const timestamp = Date.now().toString(36);
@@ -485,32 +522,18 @@
         
         function register() {
             const realName = realNameInput.value.trim();
-            
-            if (!realName) {
-                alert('الرجاء إدخال اسمك');
-                return;
-            }
+            if (!realName) { alert('الرجاء إدخال اسمك'); return; }
             
             socket.emit('check name', realName, (exists) => {
-                if (exists) {
-                    alert('هذا الاسم مستخدم حالياً');
-                    return;
-                }
+                if (exists) { alert('هذا الاسم مستخدم حالياً'); return; }
                 
-                currentUser = {
-                    id: generateUserId(realName),
-                    name: realName
-                };
-                
+                currentUser = { id: generateUserId(realName), name: realName };
                 localStorage.setItem('salemUser', JSON.stringify(currentUser));
-                
                 socket.emit('user join', currentUser);
                 
-                myNameDisplay.textContent = realName;
                 userIdText.textContent = currentUser.id;
-                
                 registerScreen.style.display = 'none';
-                chatScreen.style.display = 'block';
+                chatScreen.style.display = 'flex';
             });
         }
         
@@ -531,12 +554,9 @@
             if (savedUser) {
                 currentUser = JSON.parse(savedUser);
                 socket.emit('user join', currentUser);
-                
-                myNameDisplay.textContent = currentUser.name;
                 userIdText.textContent = currentUser.id;
-                
                 registerScreen.style.display = 'none';
-                chatScreen.style.display = 'block';
+                chatScreen.style.display = 'flex';
             }
         }
         
@@ -554,9 +574,7 @@
             }
         }
         
-        function triggerImageUpload() {
-            document.getElementById('imageInput').click();
-        }
+        function triggerImageUpload() { document.getElementById('imageInput').click(); }
         
         function handleImageUpload(event) {
             const file = event.target.files[0];
@@ -582,9 +600,7 @@
                     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
                     mediaRecorder = new MediaRecorder(stream);
                     audioChunks = [];
-                    
                     mediaRecorder.ondataavailable = (e) => audioChunks.push(e.data);
-                    
                     mediaRecorder.onstop = () => {
                         const blob = new Blob(audioChunks, { type: 'audio/webm' });
                         const reader = new FileReader();
@@ -600,14 +616,11 @@
                         reader.readAsDataURL(blob);
                         stream.getTracks().forEach(t => t.stop());
                     };
-                    
                     mediaRecorder.start();
                     isRecording = true;
                     voiceBtn.classList.add('recording');
                     voiceBtn.innerHTML = '<i class="fas fa-stop"></i>';
-                } catch (e) {
-                    alert('لا يمكن الوصول للميكروفون');
-                }
+                } catch (e) { alert('لا يمكن الوصول للميكروفون'); }
             } else {
                 mediaRecorder.stop();
                 isRecording = false;
@@ -650,10 +663,21 @@
             messagesArea.scrollTop = messagesArea.scrollHeight;
         }
         
+        function openUsersModal() {
+            usersModal.classList.add('active');
+        }
+        
+        function closeUsersModal(event) {
+            if (!event || event.target === usersModal) {
+                usersModal.classList.remove('active');
+            }
+        }
+        
         function updateUsersList(users) {
             const arr = Array.from(users.values());
-            onlineCount.textContent = `${arr.length} متصل`;
-            usersList.innerHTML = arr.map(u => `
+            modalOnlineCount.textContent = arr.length;
+            
+            modalUsersList.innerHTML = arr.map(u => `
                 <div class="user-item">
                     <div class="user-avatar">${u.name.charAt(0).toUpperCase()}</div>
                     <div class="user-info">
