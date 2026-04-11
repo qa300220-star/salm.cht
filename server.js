@@ -1,11 +1,17 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const port = process.env.PORT || 3000;
 
-app.use(express.static(__dirname));
-app.get('/', (req, res) => res.sendFile(__dirname + '/index.html'));
+// خدمة الملفات من مجلد public
+app.use(express.static(path.join(__dirname, 'public')));
+
+// الصفحة الرئيسية
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 const connectedUsers = new Map();
 const registeredNames = new Set();
